@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --color-void: #08070a;
+  --color-abyss: #100c10;
+  --color-surface: #18131a;
+  --color-surface-raised: #221b25;
+  --color-ember: #a3151f;
+  --color-ember-bright: #d81e2c;
+  --color-ember-glow: #ff4d3d;
+  --color-relic: #b6903f;
+  --color-relic-bright: #d9b466;
+  --color-bone: #ece3d6;
+  --color-ash: #8f847e;
+  --color-line: #322a2e;
+}
+
+@theme inline {
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-bone);
+  --color-void: var(--color-void);
+  --color-abyss: var(--color-abyss);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-ember: var(--color-ember);
+  --color-ember-bright: var(--color-ember-bright);
+  --color-ember-glow: var(--color-ember-glow);
+  --color-relic: var(--color-relic);
+  --color-relic-bright: var(--color-relic-bright);
+  --color-bone: var(--color-bone);
+  --color-ash: var(--color-ash);
+  --color-line: var(--color-line);
+  --font-display: var(--font-cinzel);
+  --font-body: var(--font-inter);
+}
+
+* {
+  border-color: var(--color-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-bone);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.text-glow {
+  text-shadow: 0 0 24px rgba(216, 30, 44, 0.35);
+}
+
+.sigil-border {
+  position: relative;
+}
+
+.sigil-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--color-relic) 0%,
+    transparent 30%,
+    transparent 70%,
+    var(--color-ember) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: var(--color-bone);
+}
+
+/* Custom scrollbar to match the dark/ember palette */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-raised);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ember);
+}
